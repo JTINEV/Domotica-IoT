@@ -1,0 +1,24 @@
+#include <Wire.h>
+#include <Arduino.h>
+#include <SHTSensor.h>
+#include <U8g2lib.h>
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+// Configuración de WiFi
+const char* ssid = "Menor"; // Red WiFi
+const char* password = "zer12345."; // Contraseña WiFi
+
+// Configuración de MQTT
+const char* mqtt_server = "192.168.8.84"; // IP de la Raspberry Pi con Mosquitto
+const char* mqtt_user = "raspiot";  // Usuario para MQTT
+const char* mqtt_pass = "12345678";  // Contraseña para MQTT
+WiFiClient espClient;
+PubSubClient client(espClient);
+const char* temperaturaTopic = "casa/temperatura";
+const char* humedadTopic = "casa/humedad";
+const char* pirTopic = "casa/pir";
+
+// Inicialización del sensor SHT y PIR
+SHTSensor sht;
+const int pirPin = 13;
